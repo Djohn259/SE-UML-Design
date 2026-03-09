@@ -42,6 +42,26 @@ public class Professor {
         return tenure;
     }
 
+    // toString Functions
+    private String toStringTest() {
+        return "Professor ID: " + professorID + "\n"
+                + "Department: " + department + "\n"
+                + "First Name: " + firstName + "\n"
+                + "Last Name: " + lastName + "\n"
+                + "Email: " + email + "\n"
+                + "Tenure: " + (tenure ? "Yes" : "No") + "\n"
+                + "Classes: " + classes;
+    }
+
+    public String toString() {
+        return "Professor ID: " + professorID + "\n"
+                + "Department: " + department + "\n"
+                + "First Name: " + firstName + "\n"
+                + "Last Name: " + lastName + "\n"
+                + "Email: " + email + "\n"
+                + "Classes: " + classes;
+    }
+
     // Other Planned Methods
     public void offerClass(Course course) {
         // Implementation for offering a class to the students
