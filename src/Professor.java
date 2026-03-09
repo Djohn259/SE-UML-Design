@@ -90,10 +90,16 @@ public class Professor {
     public void assignGrade() {
         // Implementation for assigning a grade to a class
 
-
     }
 
     public void submitGrades() {
         // Implementation for submitting grades for all classes to the student's transcript
     }
+
+    // Unit Testing
+    public static void main(String[] args) {
+
+    }
 }
+
+
