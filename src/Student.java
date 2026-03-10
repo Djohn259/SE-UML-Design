@@ -18,7 +18,7 @@ public class Student {
     private final String lastname;
     private final String email;
     private boolean isLoggedIn; // false or true wether logged in
-    private boolean gradStatus = false; //whether or not the student is eligible for graduation
+    private boolean gradStatus = false; // whether or not the student is eligible for graduation
 
     public Student( // creating a student
             int studentID,
@@ -78,11 +78,13 @@ public class Student {
             return false;
         if (major.contains(program)) // no duplicates
             return false;
+
         Program myProgram = Administrator.getProgram(program);
+
+
         if (myProgram != null && myProgram.getProgramType().equals("Major")) {
-        	major.add(program);
-        } 
-        else {
+            major.add(program);
+        } else {
             System.out.println("Error, " + program + " does not exist as a major");
             return false;
         }
@@ -95,11 +97,12 @@ public class Student {
             return false;
         if (minor.contains(program))// no duplicates
             return false;
+
         Program myProgram = Administrator.getProgram(program);
+
         if (myProgram != null && myProgram.getProgramType().equals("Minor")) {
-        	minor.add(program);
-        }
-        else {
+            minor.add(program);
+        } else {
             System.out.println("Error, " + program + " does not exist as a minor");
             return false;
         }
@@ -140,16 +143,18 @@ public class Student {
             return false;
 
         isLoggedIn = true;
-        if (earnedCredits >= 128) { gradStatus = true; }
+        if (earnedCredits >= 128) {
+            gradStatus = true;
+        }
         return true;
     }
 
     public void logout() { // logs out
         isLoggedIn = false;
     }
-    
+
     public boolean getGradStatus() {
-    	return gradStatus;
+        return gradStatus;
     }
 
     public int getStudentID() {
