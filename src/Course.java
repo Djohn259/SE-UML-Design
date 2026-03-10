@@ -58,7 +58,7 @@ public class Course {
                 + "Prerequisites: " + Arrays.toString(prereqNames).replace("[", "").replace("]", "") + "\n";
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Course c1 = new Course("CS1", "Louis Yu", 30, 177, "This", new String[]{"Monday 12:00pm-1:00pm", "Wednesday 12:00pm-1:00pm", "Friday 12:00pm-1:00pm"}, "Fall", "Q");
         Course c2 = new Course("CS2", "Louis Yu", 30, 178, "This", new String[]{"Monday 12:00pm-1:00pm", "Wednesday 12:00pm-1:00pm", "Friday 12:00pm-1:00pm"}, "Fall", "Q", new Course[]{c1});
         Course c3 = new Course("Software Engineering", "Louis Yu", 30, 374, "This", new String[]{"Tuesday 12:00pm-1:35pm", "Thursday 12:00pm-1:35pm"}, "Spring", "Q", new Course[]{c1, c2});
@@ -83,5 +83,5 @@ public class Course {
             c3.capacity--;
         }
         System.out.println(c3);
-    }
+    }*/
 }

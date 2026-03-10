@@ -1,4 +1,5 @@
 //STUDENT CLASS IS MADE BY SPENCER SKJELSTAD
+//Adjustments made to Program class interaction by Chris Perez
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,14 +10,15 @@ public class Student {
     private final int studentID; // id for each student
     private final List<Course> classes; // list of classes student is in
     private int earnedCredits;
-    private final List<Program> major;
-    private final List<Program> minor; // lists of majors and minors
+    private final List<String> major;
+    private final List<String> minor; // lists of majors and minors
     private int activeCredits;
     private final Map<Course, String> grades; // stores grades for classes
     private final String firstname;
     private final String lastname;
     private final String email;
     private boolean isLoggedIn; // false or true wether logged in
+    private boolean gradStatus = false; //whether or not the student is eligible for graduation
 
     public Student( // creating a student
             int studentID,
@@ -70,34 +72,48 @@ public class Student {
         return removed;
     }
 
-    public boolean addmajor(Program program) {
+    public boolean addmajor(String program) {
         requireLoggedIn();
         if (program == null)
             return false;
         if (major.contains(program)) // no duplicates
             return false;
-        major.add(program);
+        Program myProgram = Admin.getProgram(program);
+        if (myProgram != null && myProgram.getProgramType().equals("Major")) {
+        	major.add(program);
+        } 
+        else {
+            System.out.println("Error, " + program + " does not exist as a major");
+            return false;
+        }
         return true;
     }
 
-    public boolean addminor(Program program) {
+    public boolean addminor(String program) {
         requireLoggedIn();
         if (program == null)
             return false;
         if (minor.contains(program))// no duplicates
             return false;
-        minor.add(program);
+        Program myProgram = Admin.getProgram(program);
+        if (myProgram != null && myProgram.getProgramType().equals("Minor")) {
+        	minor.add(program);
+        }
+        else {
+            System.out.println("Error, " + program + " does not exist as a minor");
+            return false;
+        }
         return true;
     }
 
-    public boolean dropmajor(Program program) {
+    public boolean dropmajor(String program) {
         requireLoggedIn();
         if (program == null)
             return false;
         return major.remove(program);// removes the major
     }
 
-    public boolean dropminor(Program program) {
+    public boolean dropminor(String program) {
         requireLoggedIn();
         if (program == null)
             return false;
@@ -124,11 +140,16 @@ public class Student {
             return false;
 
         isLoggedIn = true;
+        if (earnedCredits >= 128) { gradStatus = true; }
         return true;
     }
 
     public void logout() { // logs out
         isLoggedIn = false;
+    }
+    
+    public boolean getGradStatus() {
+    	return gradStatus;
     }
 
     public int getStudentID() {
@@ -159,15 +180,11 @@ public class Student {
         return new ArrayList<>(classes);
     }
 
-    public boolean isLoggedIn() {
-        return isLoggedIn;
-    }
-
-    public List<Program> getMajor() {
+    public List<String> getMajors() {
         return new ArrayList<>(major);
     }
 
-    public List<Program> getMinor() {
+    public List<String> getMinors() {
         return new ArrayList<>(minor);
     }
 
