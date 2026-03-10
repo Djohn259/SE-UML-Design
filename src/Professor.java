@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Professor {
     public int professorID;
     private List<Course> classes;
@@ -91,12 +92,14 @@ public class Professor {
 
     public void assignGrade() {
         // Implementation for assigning a grade to a class
-        System.out.println("Grade assigned.");
+        System.out.println("Please input a grade");
+        String grade = System.console().readLine();
+        System.out.println("Grade assigned: "+grade);
     }
 
     public void submitGrades() {
         // Implementation for submitting grades for all classes to the student's transcript
-        System.out.println("Grades submitted for all classes.");
+        System.out.println("Grades officially submitted for all offered classes.");
     }
 
     // Unit Testing
