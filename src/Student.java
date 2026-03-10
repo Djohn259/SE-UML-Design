@@ -78,7 +78,10 @@ public class Student {
             return false;
         if (major.contains(program)) // no duplicates
             return false;
-        Program myProgram = Admin.getProgram(program); // added by chris
+
+        Program myProgram = Administrator.getProgram(program);
+
+
         if (myProgram != null && myProgram.getProgramType().equals("Major")) {
             major.add(program);
         } else {
@@ -94,7 +97,9 @@ public class Student {
             return false;
         if (minor.contains(program))// no duplicates
             return false;
-        Program myProgram = Admin.getProgram(program); // added by chris
+
+        Program myProgram = Administrator.getProgram(program);
+
         if (myProgram != null && myProgram.getProgramType().equals("Minor")) {
             minor.add(program);
         } else {
