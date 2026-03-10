@@ -1,3 +1,13 @@
+// Daemyen Johnson - Course class
+
+/*
+The Course class creates a class for the registration system. Classes will be constructed with
+a name, professor, total capacity, class ID, class description, meeting time, total credits,
+credit type, and prerequisites. Course will have two constructors; one that will have a required
+prereq, and the other which requires no prereqs. All the attributes of the class are public except
+for one which will have a getter to retrieve the values. The class will also contain a toString()
+function to easily observe the class and its attributes.
+ */
 import java.util.Arrays;
 
 public class Course {
@@ -11,8 +21,9 @@ public class Course {
     public int creditNum;
     public String creditType;
     public Course[] prereq;
-    private final String[] prereqNames;
+    private final String[] prereqNames;         // should contain all names of the courses as strings
 
+    // Constructor with all the required parameters to create a course object
     public Course(String name, String professor, int capacity, int classId, String desc,
                   String[] time, String semester, String creditType, Course[] prereq) {
         this.name = name;
@@ -22,15 +33,17 @@ public class Course {
         this.desc = desc;
         this.time = time;
         this.semester = semester;
-        this.creditNum = 4;
+        this.creditNum = 4;                     // default each class to be 4 total credit hours
         this.creditType = creditType;
         this.prereq = prereq;
-        prereqNames = new String[prereq.length];
+        prereqNames = new String[prereq.length];    // will hold all prereq names so size is same as prereq
+        // loop through and obtain all names of the prerequisite classes
         for (int i = 0; i < prereq.length; i++) {
             prereqNames[i] = prereq[i].name;
         }
     }
 
+    // Overloading the constructor to allow for courses that do not have any prerequisites
     public Course(String name, String professor, int capacity, int classId, String desc,
                   String[] time, String semester, String creditType) {
         this.name = name;
@@ -40,10 +53,14 @@ public class Course {
         this.desc = desc;
         this.time = time;
         this.semester = semester;
-        this.creditNum = 4;
+        this.creditNum = 4;                 // default each class to be 4 total credit hours
         this.creditType = creditType;
-        this.prereq = new Course[]{};
+        this.prereq = new Course[]{};       // create empty list of no prereqs
         prereqNames = new String[]{};
+    }
+
+    public String[] getPrereqNames() {
+        return prereqNames;
     }
 
     public String toString() {
@@ -58,7 +75,7 @@ public class Course {
                 + "Prerequisites: " + Arrays.toString(prereqNames).replace("[", "").replace("]", "") + "\n";
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         Course c1 = new Course("CS1", "Louis Yu", 30, 177, "This", new String[]{"Monday 12:00pm-1:00pm", "Wednesday 12:00pm-1:00pm", "Friday 12:00pm-1:00pm"}, "Fall", "Q");
         Course c2 = new Course("CS2", "Louis Yu", 30, 178, "This", new String[]{"Monday 12:00pm-1:00pm", "Wednesday 12:00pm-1:00pm", "Friday 12:00pm-1:00pm"}, "Fall", "Q", new Course[]{c1});
         Course c3 = new Course("Software Engineering", "Louis Yu", 30, 374, "This", new String[]{"Tuesday 12:00pm-1:35pm", "Thursday 12:00pm-1:35pm"}, "Spring", "Q", new Course[]{c1, c2});
@@ -83,5 +100,7 @@ public class Course {
             c3.capacity--;
         }
         System.out.println(c3);
-    }*/
+        String[] prereqs = c3.getPrereqNames();
+        System.out.println(Arrays.toString(prereqs));
+    }
 }
